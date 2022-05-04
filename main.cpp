@@ -14,6 +14,16 @@ enum gameState{
     clear=1,
     giveUp=2
 };
+enum menu{
+    start=1,
+    quit=-1
+};
+enum keyboard{
+    up=72,
+    left=75,
+    right=77,
+    down=80
+};
 
 gameState startGame();
 void makeMaze(int *maze);
