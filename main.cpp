@@ -11,8 +11,8 @@
 using namespace std;
 
 enum gameState{
-    Over=1,
-    Clear=2
+    clear=1,
+    giveUp=2
 };
 
 gameState startGame();
