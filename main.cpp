@@ -25,9 +25,13 @@ enum keyboard{
     down=80
 };
 
-gameState startGame();
-void makeMaze(int *maze);
-void drawMaze(int *maze);
+void previewGame(); // 대기화면에서 user의 선택 확인
+void drawPreview(); // 대기화면 로드
+void drawUserCusor(int y); // 대기화면에 유저 커서 로드
+void gotoxy(int x, int y);
+gameState startGame(); // game 결과 반환
+void makeMaze(); // 미로 생성
+void drawMap(int *maze); // game 화면 로드
 
 int main() {
     gameState gaming;
