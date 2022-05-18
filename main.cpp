@@ -103,8 +103,9 @@ menu previewGame(){
         else if(input==space){
             switch(y){
                 case start:
-                    //makeMaze();
-                case quit: break;
+                    return start;
+                case quit:
+                    return quit;
             }
         }
     }
