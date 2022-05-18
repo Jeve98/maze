@@ -3,7 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include <Windows.h>
-ㅁ#include <random>
+#include <random>
 #include <stack>
 
 #define direction 224
