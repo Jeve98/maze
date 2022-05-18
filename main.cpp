@@ -90,7 +90,7 @@ void gotoxy(int x, int y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-void previewGame(){
+menu previewGame(){
     int y=-1, input=0;
 
     while (y!=space){
