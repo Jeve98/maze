@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <random>
 #include <stack>
+#include <time.h>
 
 #define direction 224
 #define space 32
@@ -13,6 +14,7 @@
 using namespace std;
 
 enum gameState{
+    starting=0,
     clear=1,
     giveUp=2
 };
@@ -41,6 +43,8 @@ enum crush{
 int maze[mazeSize][mazeSize]={0, };
 int origin_x=0;
 int origin_y=0;
+clock_t startT=0;
+clock_t endT=0;
 
 menu previewGame(); // 대기화면에서 user의 선택 확인
 void drawPreview(); // 대기화면 로드
@@ -52,27 +56,33 @@ void drawMap(); // game 화면 로드
 int makeRandom(int a, int b); // random값 생성
 crush userMove(); // user 움직임
 bool testInside(int type); // 움직임이 maze 내부에 있는지 검사
+clock_t timer(gameState state);
 
 int main() {
     menu state;
+    gameState game;
+    int ending=0;
 
     while (1){
         state=previewGame();
         if(state==start){
+            game=startGame();
+            timer(starting);
             for(int i=0; i<mazeSize; i++){
                 for(int j=0; j<mazeSize; j++){
                     maze[i][j]=wall;
                 }
             }
 
-            if(startGame()==giveUp){
+            if(game==giveUp){
                 cout<<"End Game";
                 return 0;
             }
             else{
-                cout<<"Clear";
+                ending=timer(game);
+                cout<< "Clear" << "\n" << "Score: "<<ending<<"\n";
                 return 0;
-            } // Clear시 시간 출력
+            }
         }
         else if(state==quit){
             return 0;
@@ -365,5 +375,16 @@ bool testInside(int type){
             else{
                 return true;
             }
+    }
+}
+
+clock_t timer(gameState state){
+    if(state==clear){
+        endT=clock();
+        return static_cast<int>(endT-startT)/CLOCKS_PER_SEC;
+    }
+    else if(state==starting){
+        startT=clock();
+        return 0;
     }
 }
